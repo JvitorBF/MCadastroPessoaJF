@@ -15,7 +15,6 @@ import static mcadastropessoaJF.MCadastroPessoaJF.cadPessoas;
  *
  * @author João Vitor
  */
-
 public class pessoaCadastro extends javax.swing.JFrame {
 
     /**
@@ -59,8 +58,11 @@ public class pessoaCadastro extends javax.swing.JFrame {
         jbSair = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtPessoa = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
+        jbDeletar = new javax.swing.JButton();
+        jbConfirmar = new javax.swing.JButton();
+        jbEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Pessoas");
@@ -84,11 +86,6 @@ public class pessoaCadastro extends javax.swing.JFrame {
 
         jlStatus.setText("<html><b>Status:</b><font color=\"red\">*</font> ");
 
-        jtfEndereco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfEnderecoActionPerformed(evt);
-            }
-        });
         jtfEndereco.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfEnderecoKeyTyped(evt);
@@ -100,22 +97,12 @@ public class pessoaCadastro extends javax.swing.JFrame {
                 jtfCPFFocusLost(evt);
             }
         });
-        jtfCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfCPFActionPerformed(evt);
-            }
-        });
         jtfCPF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfCPFKeyTyped(evt);
             }
         });
 
-        jtfsNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfsNomeActionPerformed(evt);
-            }
-        });
         jtfsNome.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfsNomeKeyTyped(evt);
@@ -123,22 +110,12 @@ public class pessoaCadastro extends javax.swing.JFrame {
         });
 
         jtfTelefone.setToolTipText("xx - xxxxxxxxx");
-        jtfTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfTelefoneActionPerformed(evt);
-            }
-        });
         jtfTelefone.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfTelefoneKeyTyped(evt);
             }
         });
 
-        jtfIdade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfIdadeActionPerformed(evt);
-            }
-        });
         jtfIdade.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jtfIdadeKeyTyped(evt);
@@ -174,7 +151,7 @@ public class pessoaCadastro extends javax.swing.JFrame {
 
         jSeparator2.setForeground(new java.awt.Color(204, 0, 51));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtPessoa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -200,9 +177,33 @@ public class pessoaCadastro extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jtPessoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtPessoaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtPessoa);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jbDeletar.setText("Deletar");
+        jbDeletar.setEnabled(false);
+        jbDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDeletarActionPerformed(evt);
+            }
+        });
+
+        jbConfirmar.setText("Confirmar");
+        jbConfirmar.setEnabled(false);
+
+        jbEditar.setText("Editar");
+        jbEditar.setEnabled(false);
+        jbEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -261,6 +262,12 @@ public class pessoaCadastro extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbConfirmar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbDeletar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbSair)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -306,7 +313,11 @@ public class pessoaCadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbSair)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSair)
+                    .addComponent(jbDeletar)
+                    .addComponent(jbConfirmar)
+                    .addComponent(jbEditar))
                 .addContainerGap())
         );
 
@@ -324,10 +335,6 @@ public class pessoaCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfEnderecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfEnderecoActionPerformed
-
     private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
         // TODO add your handling code here:
         jtfCPF.setText("");
@@ -339,22 +346,6 @@ public class pessoaCadastro extends javax.swing.JFrame {
         jtfsNome.requestFocus();
     }//GEN-LAST:event_jbLimparActionPerformed
 
-
-    private void jtfsNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfsNomeActionPerformed
-        // TODO add your handling code here:        
-    }//GEN-LAST:event_jtfsNomeActionPerformed
-
-    private void jtfCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfCPFActionPerformed
-
-    private void jtfTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfTelefoneActionPerformed
-
-    private void jtfIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfIdadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfIdadeActionPerformed
 
     private void jtfsNomeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfsNomeKeyTyped
         // TODO add your handling code here:   
@@ -426,6 +417,68 @@ public class pessoaCadastro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jbSairActionPerformed
 
+    // Botão Deletar inicia como desabilitado, pois logo ao clicar na tabela, ele é setado como TRUE 
+    private void jtPessoaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPessoaMouseClicked
+        // TODO add your handling code here:
+        jbDeletar.setEnabled(true);
+        jbEditar.setEnabled(true);
+    }//GEN-LAST:event_jtPessoaMouseClicked
+
+    private void jbDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarActionPerformed
+        // TODO add your handling code here:
+        jbEditar.setEnabled(false);
+        int linha_da_tabela;
+        String CPF;
+        linha_da_tabela = jtPessoa.getSelectedRow();
+        CPF = (String) jtPessoa.getValueAt(linha_da_tabela, 1);
+        Pessoa p = cadPessoas.getByDoc(CPF);
+        /*
+        int resposta;       
+        resposta = JOptionPane.showConfirmDialog(this,
+                "Deseja realmente deletar " + p.getNomePessoa() + "?",
+                ".: Deletar :.", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+         */
+        Object[] resp = {"sim", "Não"};
+        int resposta = JOptionPane.showOptionDialog(this,
+                "Deseja realmente deletar " + p.getNomePessoa() + "?",
+                ".: Deletar :.", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.WARNING_MESSAGE, null, resp, resp[0]);
+        if (resposta == 0) {
+            cadPessoas.deletar(p);
+            addRowToTable();
+            JOptionPane.showMessageDialog(this, "Pessoa deletada com sucesso!",
+                    ".: Deletar :.", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Entendemos a sua decisão!",
+                    ".: Deletar :.", JOptionPane.INFORMATION_MESSAGE);
+        }
+        jbDeletar.setEnabled(false);
+    }//GEN-LAST:event_jbDeletarActionPerformed
+
+    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
+        // TODO add your handling code here:
+        // Ajustando o comportamento dos botões
+        jbDeletar.setEnabled(false);
+        jbSalvar.setEnabled(false);
+        jbEditar.setEnabled(false);
+        jbLimpar.setEnabled(false);
+        jbConfirmar.setEnabled(true);
+
+        //carregar os dados da pessoa selecionada 
+        int linha_da_tabela;
+        String CPF;
+        linha_da_tabela = jtPessoa.getSelectedRow();
+        CPF = (String) jtPessoa.getValueAt(linha_da_tabela, 1);
+        Pessoa p = cadPessoas.getByDoc(CPF);
+        
+        jtfsNome.setText(p.getNomePessoa());
+        jtfCPF.setText(p.getCpf());
+        jtfEndereco.setText(p.getEndereco());
+        jtfTelefone.setText(p.getTelefone());
+        jtfIdade.setText(Integer.toString(p.getIdade()));
+    }//GEN-LAST:event_jbEditarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -474,7 +527,9 @@ public class pessoaCadastro extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jbConfirmar;
+    private javax.swing.JButton jbDeletar;
+    private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbLimpar;
     private javax.swing.JButton jbSair;
     private javax.swing.JButton jbSalvar;
@@ -486,6 +541,7 @@ public class pessoaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jlTelefone;
     private javax.swing.JRadioButton jrbAtivo;
     private javax.swing.JRadioButton jrbInativo;
+    private javax.swing.JTable jtPessoa;
     private javax.swing.JTextField jtfCPF;
     private javax.swing.JTextField jtfEndereco;
     private javax.swing.JTextField jtfIdade;
@@ -493,23 +549,16 @@ public class pessoaCadastro extends javax.swing.JFrame {
     private javax.swing.JTextField jtfsNome;
     // End of variables declaration//GEN-END:variables
 
+    //Cria obj model e recebe a modelagem da tabela JtPessoa do JFrame
     private void addRowToTable() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
+        DefaultTableModel model = (DefaultTableModel) jtPessoa.getModel();
         model.getDataVector().removeAllElements();
-
         model.fireTableDataChanged();
-
         Object rowData[] = new Object[4]; //cria vetor para as colunas da tabela
-
         for (Pessoa p : cadPessoas.getAll()) {
-
             rowData[0] = p.getNomePessoa();
-
-            rowData[1] = ValidaCPF.imprimeCPF(p.getCpf());
-
+            rowData[1] = p.getCpf();
             rowData[2] = p.getTelefone();
-
             if (p.isStatus()) {
                 rowData[3] = "Ativo";
             } else {
@@ -521,7 +570,6 @@ public class pessoaCadastro extends javax.swing.JFrame {
 
     private boolean validaImputs() {
         String telefone = jtfTelefone.getText();
-
         if (jtfsNome.getText().isBlank()
                 || jtfCPF.getText().isBlank()
                 || jtfEndereco.getText().isBlank()
@@ -532,65 +580,42 @@ public class pessoaCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,
                     "Todos os campos devem ser preenchidos!",
                     ".: Erro :.", JOptionPane.ERROR_MESSAGE);
-
             jtfsNome.requestFocus();
-
             return false;
-
         }
 
         if (telefone.length() != 10 && telefone.length() != 11) {
-
             JOptionPane.showMessageDialog(this,
                     "Telefone informado esta incorreto",
                     ".: Erro :.", JOptionPane.ERROR_MESSAGE);
-
             jtfTelefone.requestFocus();
-
             return false;
-
         }
 
         if (!jtfIdade.getText().isBlank()) {
-
             int idade = Integer.parseInt(jtfIdade.getText());
-
             if (idade == 0 || idade > 120) {
-
                 JOptionPane.showMessageDialog(this,
                         "Idade informada esta incorreta!",
                         ".: Erro :.", JOptionPane.ERROR_MESSAGE);
-
                 jtfIdade.requestFocus();
-
                 return false;
-
             }
-
         }
 
         if (!ValidaCPF.isCPF(jtfCPF.getText())) {
-
             JOptionPane.showMessageDialog(this,
                     "CPF informado esta incorreto!!!",
                     ".: Erro :.", JOptionPane.ERROR_MESSAGE);
-
             jtfCPF.requestFocus();
-
             return false;
-
         } else if (cadPessoas.verCPF(jtfCPF.getText())) {
-
             JOptionPane.showMessageDialog(this,
                     "CPF já cadastrado!!!",
                     ".: Erro :.", JOptionPane.ERROR_MESSAGE);
-
             jtfCPF.requestFocus();
-
             return false;
-
         }
-
         return true;
     }
 }
