@@ -24,7 +24,6 @@ public class MCadastroPessoaJF {
     public static CPessoa cadPessoas = new CPessoa();
     public static CCarro cadCarros = new CCarro();
     public static CVagaEstacionamento cadVagas = new CVagaEstacionamento();
-    
 
     /**
      * Função leTexto serva para resolver problema do Java com console na

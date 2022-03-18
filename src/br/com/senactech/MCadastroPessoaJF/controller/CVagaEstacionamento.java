@@ -13,11 +13,11 @@ import mcadastropessoaJF.MCadastroPessoaJF;
  *
  * @author jairb
  */
-public class CVagaEstacionamento implements InterfaceController<VagaEstacionamento>{
+public class CVagaEstacionamento implements InterfaceController<VagaEstacionamento> {
 
     ArrayList<VagaEstacionamento> vagas = new ArrayList<>();
     int idVaga = 1;
-    
+
     @Override
     public void add(VagaEstacionamento o) {
         vagas.add(o);
@@ -31,31 +31,31 @@ public class CVagaEstacionamento implements InterfaceController<VagaEstacionamen
     @Override
     public boolean deletar(VagaEstacionamento o) {
         boolean del = vagas.remove(o);
-        return  del;
+        return del;
     }
 
     @Override
     public VagaEstacionamento getByDoc(String d) {
-       return null;
+        return null;
     }
 
     @Override
     public int gerarId() {
         return idVaga++;
     }
-    
-    public void mokVagas(){
+
+    public void mokVagas() {
         VagaEstacionamento v1 = new VagaEstacionamento();
         v1.setIdVaga(gerarId());
         v1.setTpVaga("Carro");
         v1.setC(MCadastroPessoaJF.cadCarros.getByDoc("CHS6647"));
         vagas.add(v1);
-        
+
         VagaEstacionamento v2 = new VagaEstacionamento();
         v2.setIdVaga(gerarId());
         v2.setTpVaga("Carro");
         v2.setC(MCadastroPessoaJF.cadCarros.getByDoc("IPP1234"));
         vagas.add(v2);
     }
-    
+
 }

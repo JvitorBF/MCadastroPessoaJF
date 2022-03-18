@@ -5,12 +5,12 @@
  */
 package br.com.senactech.MCadastroPessoaJF.model;
 
-
 /**
  *
  * @author jairb
  */
 public class Pessoa {
+
     private int idPessoa;//PK
     private String nomePessoa;
     private String cpf;
@@ -18,22 +18,21 @@ public class Pessoa {
     private String telefone;
     private int idade;
     private boolean status;//identifica se a pessoa esta ativa ou não
-    
-    
-    
-    public Pessoa(){
+
+    public Pessoa() {
         //Construtor vazio para usar os métodos acessores geters and seters
     }
 
     /**
      * Construtor com todos os atributos como parâmetro.
+     *
      * @param idPessoa
      * @param nomePessoa
      * @param cpf
      * @param endereco
      * @param telefone
      * @param idade
-     * @param status 
+     * @param status
      */
     public Pessoa(int idPessoa, String nomePessoa, String cpf, String endereco, String telefone, int idade, boolean status) {
         this.idPessoa = idPessoa;
@@ -47,7 +46,8 @@ public class Pessoa {
 
     /**
      * Recupera o id da Pessoa
-     * @return 
+     *
+     * @return
      */
     public int getIdPessoa() {
         return idPessoa;
@@ -55,7 +55,8 @@ public class Pessoa {
 
     /**
      * Set o id da Pessoa
-     * @param idPessoa 
+     *
+     * @param idPessoa
      */
     public void setIdPessoa(int idPessoa) {
         this.idPessoa = idPessoa;
@@ -113,7 +114,5 @@ public class Pessoa {
     public String toString() {
         return "Pessoa{" + "idPessoa=" + idPessoa + ", nomePessoa=" + nomePessoa + ", cpf=" + cpf + ", endereco=" + endereco + ", telefone=" + telefone + ", idade=" + idade + ", status=" + status + '}';
     }
-    
 
-    
 }

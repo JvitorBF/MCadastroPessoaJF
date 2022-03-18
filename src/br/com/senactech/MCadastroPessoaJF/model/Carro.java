@@ -5,12 +5,12 @@
  */
 package br.com.senactech.MCadastroPessoaJF.model;
 
-
 /**
  *
  * @author jairb
  */
-public class Carro{
+public class Carro {
+
     private int idCarro;//PK
     private String placa;
     private String marca;
@@ -110,7 +110,7 @@ public class Carro{
 
     @Override
     public String toString() {
-        return "Carro{" + "idCarro=" + idCarro + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", anoFabricacao=" + anoFabricacao + ", anoModelo=" + anoModelo + ", cor=" + cor + ", nPortas=" + nPortas + ", idPessoa=" + idPessoa +'}'+"\n";
+        return "Carro{" + "idCarro=" + idCarro + ", placa=" + placa + ", marca=" + marca + ", modelo=" + modelo + ", anoFabricacao=" + anoFabricacao + ", anoModelo=" + anoModelo + ", cor=" + cor + ", nPortas=" + nPortas + ", idPessoa=" + idPessoa + '}' + "\n";
     }
-    
+
 }

@@ -10,6 +10,7 @@ package br.com.senactech.MCadastroPessoaJF.model;
  * @author jairb
  */
 public class VagaEstacionamento {
+
     private int idVaga;
     private String tpVaga;
     private Carro c; //exemplo de agregação
@@ -52,7 +53,5 @@ public class VagaEstacionamento {
     public String toString() {
         return "VagaEstacionamento{" + "idVaga=" + idVaga + ", tpVaga=" + tpVaga + ", c=" + c + '}';
     }
-    
-    
-    
+
 }

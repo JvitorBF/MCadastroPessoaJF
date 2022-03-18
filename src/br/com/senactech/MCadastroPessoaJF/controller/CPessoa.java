@@ -12,7 +12,7 @@ import br.com.senactech.MCadastroPessoaJF.model.Pessoa;
  *
  * @author jairb
  */
-public class CPessoa implements InterfaceController<Pessoa>{
+public class CPessoa implements InterfaceController<Pessoa> {
 
     ArrayList<Pessoa> pessoas = new ArrayList<>();//Repositório de Pessoas
     int idPessoa = 1;
@@ -39,7 +39,7 @@ public class CPessoa implements InterfaceController<Pessoa>{
         Pessoa p1 = new Pessoa();
         p1.setIdPessoa(this.gerarId());
         p1.setNomePessoa("Felispino");
-        p1.setCpf("12312312312");
+        p1.setCpf("05380419003");
         p1.setEndereco("Mario Quintana");
         p1.setTelefone("51998998998");
         p1.setIdade(39);
@@ -116,11 +116,11 @@ public class CPessoa implements InterfaceController<Pessoa>{
         }
         return idPessoa;
     }
-    
-    public String getNomePes(int idPessoa){
+
+    public String getNomePes(int idPessoa) {
         String nome = null;
-        for(Pessoa listPes: pessoas){
-            if (listPes.getIdPessoa()==idPessoa) {
+        for (Pessoa listPes : pessoas) {
+            if (listPes.getIdPessoa() == idPessoa) {
                 nome = listPes.getNomePessoa();
                 break;
             }

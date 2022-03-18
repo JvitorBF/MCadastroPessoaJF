@@ -67,10 +67,9 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
                                   <Component id="jlIdade" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Component id="jtfIdade" min="-2" pref="96" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
@@ -94,7 +93,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jtfTelefone" alignment="0" min="-2" pref="136" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jtfCPF" min="-2" pref="149" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jtfCPF" min="-2" pref="149" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jbPesqCPF" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Component id="jtfsNome" alignment="0" pref="293" max="32767" attributes="0"/>
                                   <Component id="jtfEndereco" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -146,6 +149,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlCPF" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtfCPF" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jbPesqCPF" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -260,7 +264,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jtfCPF">
           <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jtfCPFFocusLost"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtfCPFKeyTyped"/>
           </Events>
         </Component>
@@ -399,6 +402,9 @@
             <Property name="text" type="java.lang.String" value="Confirmar"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbConfirmarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbEditar">
           <Properties>
@@ -407,6 +413,17 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbEditarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbPesqCPF">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="33" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pesquisa CPF"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbPesqCPFActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
