@@ -85,14 +85,14 @@ public class CCarro implements InterfaceController<Carro> {
 
     @Override
     public Carro getByDoc(String placa) {
-        Carro car = null;
+        Carro c = null;
         for (Carro listCar : carros) {
             if (listCar.getPlaca().equalsIgnoreCase(placa)) {
-                car = listCar;
+                c = listCar;
                 break;
             }
         }
-        return car;
+        return c;
     }
 
 }

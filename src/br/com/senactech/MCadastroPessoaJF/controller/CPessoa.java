@@ -79,6 +79,18 @@ public class CPessoa implements InterfaceController<Pessoa> {
         return verStatus;
     }
 
+    public String getCpfPessoa(int idPessoa) {
+        String cpf = null;    
+        for (Pessoa listPes : pessoas) {
+            if (listPes.getIdPessoa() == idPessoa) {
+                cpf = listPes.getCpf();
+                break;
+            }
+        }
+        return cpf;
+    }
+     
+
     @Override
     public Pessoa getByDoc(String cpf) {
         Pessoa p = new Pessoa();

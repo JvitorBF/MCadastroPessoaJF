@@ -438,6 +438,7 @@ public class pessoaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
         jbDeletar.setEnabled(true);
         jbEditar.setEnabled(true);
+        jbSalvar.setEnabled(false);
     }//GEN-LAST:event_jtPessoaMouseClicked
 
     private void jbDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarActionPerformed
@@ -527,8 +528,8 @@ public class pessoaCadastro extends javax.swing.JFrame {
         } else {
             jbLimpar.doClick();
             jtfCPF.setEnabled(true);
-
         }
+        jtfCPF.setEnabled(true);
 
     }//GEN-LAST:event_jbConfirmarActionPerformed
 

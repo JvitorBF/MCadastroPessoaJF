@@ -49,15 +49,16 @@ public class Pessoa {
      *
      * @return
      */
-    public int getIdPessoa() {
-        return idPessoa;
-    }
-
     /**
      * Set o id da Pessoa
      *
      * @param idPessoa
      */
+    
+    public int getIdPessoa() {
+        return idPessoa;   
+    }           
+
     public void setIdPessoa(int idPessoa) {
         this.idPessoa = idPessoa;
     }
@@ -114,5 +115,6 @@ public class Pessoa {
     public String toString() {
         return "Pessoa{" + "idPessoa=" + idPessoa + ", nomePessoa=" + nomePessoa + ", cpf=" + cpf + ", endereco=" + endereco + ", telefone=" + telefone + ", idade=" + idade + ", status=" + status + '}';
     }
+
 
 }

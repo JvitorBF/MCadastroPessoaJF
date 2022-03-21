@@ -9,7 +9,9 @@ import br.com.senactech.MCadastroPessoa.util.ValidaCPF;
 import br.com.senactech.MCadastroPessoaJF.model.Carro;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import static mcadastropessoaJF.MCadastroPessoaJF.cadCarros;
 import static mcadastropessoaJF.MCadastroPessoaJF.cadPessoas;
 
@@ -19,6 +21,8 @@ import static mcadastropessoaJF.MCadastroPessoaJF.cadPessoas;
  */
 public class carroCadastro extends javax.swing.JFrame {
 
+    JButton btnClick = null;
+
     /**
      * Creates new form carroCadastro
      */
@@ -27,6 +31,8 @@ public class carroCadastro extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cadPessoas.mokPessoas();
         cadCarros.mokCarro();
+        addRowToTable();
+
     }
 
     /**
@@ -38,30 +44,6 @@ public class carroCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtPessoa = new javax.swing.JTable();
-        jbDeletar = new javax.swing.JButton();
-        jbConfirmar = new javax.swing.JButton();
-        jbEditar = new javax.swing.JButton();
-        jbPesqCPF = new javax.swing.JButton();
-        jlStatus = new javax.swing.JLabel();
-        jtfEndereco = new javax.swing.JTextField();
-        jtfCPF = new javax.swing.JTextField();
-        jtfsNome = new javax.swing.JTextField();
-        jtfTelefone = new javax.swing.JTextField();
-        jtfIdade = new javax.swing.JTextField();
-        jrbAtivo = new javax.swing.JRadioButton();
-        jrbInativo = new javax.swing.JRadioButton();
-        jbSalvar = new javax.swing.JButton();
-        jbLimpar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jlNome = new javax.swing.JLabel();
-        jlEndereco = new javax.swing.JLabel();
-        jlTelefone = new javax.swing.JLabel();
-        jlIdade = new javax.swing.JLabel();
-        jbSair = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -83,72 +65,14 @@ public class carroCadastro extends javax.swing.JFrame {
         jtfAnoM = new javax.swing.JTextField();
         jtfPortas = new javax.swing.JTextField();
         jlProprietario = new javax.swing.JLabel();
-        jbSalvarCarro = new javax.swing.JButton();
-        jbLimparCarro = new javax.swing.JButton();
-
-        jtPessoa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                ".", ".", ".", "."
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jtPessoa);
-
-        jbDeletar.setText("Deletar");
-        jbDeletar.setEnabled(false);
-
-        jbConfirmar.setText("Confirmar");
-        jbConfirmar.setEnabled(false);
-
-        jbEditar.setText("Editar");
-        jbEditar.setEnabled(false);
-
-        jbPesqCPF.setForeground(new java.awt.Color(0, 51, 204));
-        jbPesqCPF.setText("Pesquisa CPF");
-
-        jlStatus.setText("<html><b>Status:</b><font color=\"red\">*</font> ");
-
-        jtfTelefone.setToolTipText("xx - xxxxxxxxx");
-
-        jrbAtivo.setText("Ativo");
-
-        jrbInativo.setText("Inativo");
-
-        jbSalvar.setText("Salvar");
-
-        jbLimpar.setText("Limpar");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Cadastro Carro");
-
-        jSeparator3.setForeground(new java.awt.Color(204, 0, 51));
-
-        jlNome.setText("<html><b>Nome:</b><font color=\"red\">*</font> ");
-
-        jlEndereco.setText("<html><b>Endereco:</b><font color=\"red\">*</font> ");
-
-        jlTelefone.setText("<html><b>Telefone:</b><font color=\"red\">*</font> ");
-
-        jlIdade.setText("<html><b>Idade:</b><font color=\"red\">*</font> ");
-
-        jbSair.setText("Sair");
-
-        jSeparator4.setForeground(new java.awt.Color(204, 0, 51));
+        jbSalvar = new javax.swing.JButton();
+        jbLimpar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtCarros = new javax.swing.JTable();
+        jbDeletar = new javax.swing.JButton();
+        jbSair = new javax.swing.JButton();
+        jbEditar = new javax.swing.JButton();
+        jbConfirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,21 +100,43 @@ public class carroCadastro extends javax.swing.JFrame {
                 jtfPlacaFocusLost(evt);
             }
         });
+        jtfPlaca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfPlacaKeyTyped(evt);
+            }
+        });
+
+        jtfAnoFabricacao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfAnoFabricacaoKeyTyped(evt);
+            }
+        });
+
+        jtfCor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfCorKeyTyped(evt);
+            }
+        });
 
         jtfCPFProp.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jtfCPFPropFocusLost(evt);
             }
         });
-        jtfCPFProp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfCPFPropActionPerformed(evt);
+        jtfCPFProp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfCPFPropKeyTyped(evt);
             }
         });
 
         jbPesquisaPlaca.setText("Pesquisa Placa");
+        jbPesquisaPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPesquisaPlacaActionPerformed(evt);
+            }
+        });
 
-        jcMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Mercedes", "Jeep", "Fiat", "Mitsubishi", "Lincoln", "Land Rover", "Jaguard" }));
+        jcMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Mercedes", "Jeep", "Fiat", "Mitsubishi", "Lincoln", "Land Rover", "Jaguard", "Peugeot", "GM" }));
 
         jlModelo.setText("Modelo:");
 
@@ -198,31 +144,101 @@ public class carroCadastro extends javax.swing.JFrame {
 
         jlPortas.setText("Portas:");
 
-        jtfModelo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfModeloActionPerformed(evt);
+        jtfModelo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfModeloKeyTyped(evt);
             }
         });
 
-        jtfAnoM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfAnoMActionPerformed(evt);
+        jtfAnoM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfAnoMKeyTyped(evt);
+            }
+        });
+
+        jtfPortas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtfPortasKeyTyped(evt);
             }
         });
 
         jlProprietario.setText("Proprietário...");
 
-        jbSalvarCarro.setText("Salvar");
-        jbSalvarCarro.addActionListener(new java.awt.event.ActionListener() {
+        jbSalvar.setText("Salvar");
+        jbSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSalvarCarroActionPerformed(evt);
+                jbSalvarActionPerformed(evt);
             }
         });
 
-        jbLimparCarro.setText("Limpar");
-        jbLimparCarro.addActionListener(new java.awt.event.ActionListener() {
+        jbLimpar.setText("Limpar");
+        jbLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbLimparCarroActionPerformed(evt);
+                jbLimparActionPerformed(evt);
+            }
+        });
+
+        jtCarros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Placa", "Marca", "Modelo", "Proprietário"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtCarros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtCarrosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jtCarros);
+
+        jbDeletar.setText("Deletar");
+        jbDeletar.setEnabled(false);
+        jbDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDeletarActionPerformed(evt);
+            }
+        });
+
+        jbSair.setText("Sair");
+        jbSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSairActionPerformed(evt);
+            }
+        });
+
+        jbEditar.setText("Editar");
+        jbEditar.setEnabled(false);
+        jbEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditarActionPerformed(evt);
+            }
+        });
+
+        jbConfirmar.setText("Confirmar");
+        jbConfirmar.setEnabled(false);
+        jbConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbConfirmarActionPerformed(evt);
             }
         });
 
@@ -261,7 +277,7 @@ public class carroCadastro extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jlPortas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jtfPortas, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jlAnoM)
@@ -278,9 +294,24 @@ public class carroCadastro extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbSalvarCarro)
+                        .addComponent(jbSalvar)
                         .addGap(3, 3, 3)
-                        .addComponent(jbLimparCarro)))
+                        .addComponent(jbLimpar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 7, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jbEditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbConfirmar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbDeletar)
+                                .addGap(2, 2, 2)
+                                .addComponent(jbSair)))))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -329,18 +360,27 @@ public class carroCadastro extends javax.swing.JFrame {
                     .addComponent(jlProprietario))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbSalvarCarro)
-                    .addComponent(jbLimparCarro))
+                    .addComponent(jbSalvar)
+                    .addComponent(jbLimpar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbEditar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbDeletar)
+                        .addComponent(jbSair)
+                        .addComponent(jbConfirmar)))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(516, Short.MAX_VALUE)))
+                    .addContainerGap(568, Short.MAX_VALUE)))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jcMarca, jtfAnoFabricacao, jtfAnoM, jtfCPFProp, jtfCor, jtfModelo, jtfPlaca, jtfPortas});
@@ -348,47 +388,298 @@ public class carroCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfModeloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfModeloActionPerformed
+    /**
+     * Configuração os campos JTextField - Eventos KeyTyped e FocusLost -
+     * !JComboBox não faz parte! A verificação foi feita no JButton "Salvar"!
+     *
+     */
+    // Placa 
+    private void jtfPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPlacaKeyTyped
+        String caracteres = "abcdefghijklmnopqrstuvxywz1234567890";
+        if (caracteres.contains(evt.getKeyChar() + "")) {
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfPlacaKeyTyped
 
-    private void jtfAnoMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAnoMActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfAnoMActionPerformed
+    private void jtfPlacaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfPlacaFocusLost
+        String placa = jtfPlaca.getText().toUpperCase();
+        jtfPlaca.setText(placa);
+    }//GEN-LAST:event_jtfPlacaFocusLost
+
+    // Ano Fabricação 
+    private void jtfAnoFabricacaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAnoFabricacaoKeyTyped
+        String caracteres = "1234567890";
+        if (caracteres.contains(evt.getKeyChar() + "")) {
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfAnoFabricacaoKeyTyped
+
+    // Cor 
+    private void jtfCorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCorKeyTyped
+        String caracteres = "abcdefghijklmnopqrstuvwxyz";
+        if (caracteres.contains(evt.getKeyChar() + "")) {
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfCorKeyTyped
+
+    // CPF 
+    private void jtfCPFPropKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfCPFPropKeyTyped
+        String caracteres = "1234567890";
+        if (caracteres.contains(evt.getKeyChar() + "")) {
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfCPFPropKeyTyped
 
     private void jtfCPFPropFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfCPFPropFocusLost
-        // TODO add your handling code here:
         if (!ValidaCPF.isCPF(jtfCPFProp.getText())) {
             JOptionPane.showMessageDialog(this,
                     "CPF informado esta incorreto!!!",
                     ".: Erro :.", JOptionPane.ERROR_MESSAGE);
-            jtfCPF.requestFocus();
+            jtfCPFProp.requestFocus();
         } else if (cadPessoas.verCPF(jtfCPFProp.getText())) {
             int id = cadPessoas.pesqIdPes(jtfCPFProp.getText());
-            jlProprietario.setText(cadPessoas.getNomePes(id));
+            jlProprietario.setText(cadPessoas.getNomePes(id).toUpperCase());
         }
     }//GEN-LAST:event_jtfCPFPropFocusLost
 
-    private void jtfCPFPropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfCPFPropActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfCPFPropActionPerformed
+    // Modelo 
+    private void jtfModeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfModeloKeyTyped
+        String caracteres = "abcdefghijklmnopqrstuvwxyz1234567890";
+        if (caracteres.contains(evt.getKeyChar() + "")) {
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfModeloKeyTyped
 
-    private void jtfPlacaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfPlacaFocusLost
+    // Ano Modelo 
+    private void jtfAnoMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfAnoMKeyTyped
+        String caracteres = "1234567890";
+        if (caracteres.contains(evt.getKeyChar() + "")) {
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfAnoMKeyTyped
+
+    // Portas 
+    private void jtfPortasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtfPortasKeyTyped
+        String caracteres = "1234567890";
+        if (caracteres.contains(evt.getKeyChar() + "")) {
+        } else {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtfPortasKeyTyped
+
+    /**
+     * Configuração JButton's - Salvar,Limpar e Pesquisa Placa - Evento
+     * ActionPerformed - !Aqui foi feita a verificação do JComboBox!
+     */
+    // JButton "Pesquisa Placa"
+    private void jbPesquisaPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisaPlacaActionPerformed
+        if (!cadCarros.verPlaca((jtfPlaca.getText()))) {
+            JOptionPane.showMessageDialog(this,
+                    "Placa informado esta incorreto!!!",
+                    ".: Erro :.", JOptionPane.ERROR_MESSAGE);
+            jtfPlaca.requestFocus();
+        } else {
+            Carro c = cadCarros.getByDoc(jtfPlaca.getText());
+            jtfPlaca.setText(c.getPlaca());
+            jtfAnoFabricacao.setText(Integer.toString(c.getAnoFabricacao()));
+            jtfCor.setText(c.getCor());
+            jtfModelo.setText(c.getModelo());
+            jtfAnoM.setText(Integer.toString(c.getAnoModelo()));
+            jtfPortas.setText(Integer.toString(c.getnPortas()));
+            jcMarca.setSelectedItem(c.getMarca());
+
+            jbConfirmar.setEnabled(true);
+            jbSalvar.setEnabled(false);
+
+        }
+
+    }//GEN-LAST:event_jbPesquisaPlacaActionPerformed
+
+    // JButton "Salvar"
+    private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
+        btnClick = (JButton) evt.getSource();
+        if (validaInputs()) {
+            int idCarro = cadCarros.gerarId();
+            String placa = jtfPlaca.getText();
+            String marca = (String) jcMarca.getSelectedItem();
+            int anoFabricacao = Integer.parseInt(jtfAnoFabricacao.getText());
+            String cor = jtfCor.getText();
+            String modelo = jtfModelo.getText();
+            int anoModelo = Integer.parseInt(jtfAnoM.getText());
+            int nPortas = Integer.parseInt(jtfPortas.getText());
+            int idPessoa = cadPessoas.pesqIdPes(jtfCPFProp.getText());
+
+            Carro c = new Carro(idCarro, placa, marca, modelo, anoFabricacao, anoModelo, cor, nPortas, idPessoa);
+            cadCarros.add(c);
+            JOptionPane.showMessageDialog(this, "Carro foi salva com sucesso!");
+            jbLimpar.doClick();
+            addRowToTable();
+        }
+    }//GEN-LAST:event_jbSalvarActionPerformed
+
+    // JButton "Limpar"
+    private void jbLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparActionPerformed
         // TODO add your handling code here:
-        String placa = jtfPlaca.getText();
-        jtfPlaca.setText(placa.toUpperCase());
-    }//GEN-LAST:event_jtfPlacaFocusLost
+        jtfPlaca.setText("");
+        jcMarca.setSelectedIndex(0);
+        jtfAnoFabricacao.setText("");
+        jtfCor.setText("");
+        jtfCPFProp.setText("");
+        jtfModelo.setText("");
+        jtfAnoM.setText("");
+        jtfPortas.setText("");
+        jlProprietario.setText("Proprietário...");
+        jtfPlaca.requestFocus();
+
+        jbEditar.setEnabled(false);
+        jbConfirmar.setEnabled(false);
+        jbDeletar.setEnabled(false);
+        jbSalvar.setEnabled(true);
+        jtfPlaca.setEnabled(true);
+        jtfCPFProp.setEnabled(true);
+    }//GEN-LAST:event_jbLimparActionPerformed
+
+    /**
+     * Configuração JTable - Evento MouseClicked -
+     *
+     */
+
+    private void jtCarrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtCarrosMouseClicked
+        jbEditar.setEnabled(true);
+        jbDeletar.setEnabled(true);
+        jbSalvar.setEnabled(false);
+    }//GEN-LAST:event_jtCarrosMouseClicked
+
+    /**
+     * Configuração JButton's - Editar,Confirmar, Deletar e Sair
+     *
+     */
+    
+    // JButton "Editar"
+    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
+        // TODO add your handling code here:
+        jtfPlaca.setEnabled(false);
+        jtfCPFProp.setEnabled(false);
+        jbEditar.setEnabled(false);
+        jbConfirmar.setEnabled(true);
+        jbDeletar.setEnabled(false);
+        jbSalvar.setEnabled(false);
+        jbLimpar.setText("Cancelar");
+
+        int linha_da_tabela;
+        String placa;
+        linha_da_tabela = jtCarros.getSelectedRow();
+        placa = (String) jtCarros.getValueAt(linha_da_tabela, 0);
+        Carro c = cadCarros.getByDoc(placa);
+
+        jtfPlaca.setText(c.getPlaca());
+        jcMarca.setSelectedItem(c.getMarca());
+        jtfAnoFabricacao.setText(Integer.toString(c.getAnoFabricacao()));
+        jtfCor.setText(c.getCor());
+        // Pega o CPF da pessoa pelo ID
+        jtfCPFProp.setText(cadPessoas.getCpfPessoa(c.getIdPessoa()));              
+        jlProprietario.setText(cadPessoas.getNomePes(c.getIdPessoa()).toUpperCase());        
+        jtfModelo.setText(c.getModelo());
+        jtfAnoM.setText(Integer.toString(c.getAnoModelo()));
+        jtfPortas.setText(Integer.toString(c.getnPortas()));
+
+    }//GEN-LAST:event_jbEditarActionPerformed
+    
+    // JButton "Confirmar"
+    private void jbConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConfirmarActionPerformed
+
+        btnClick = (JButton) evt.getSource();
+        if (validaInputs()) {
+            Carro c = cadCarros.getByDoc(jtfPlaca.getText());
+
+            c.setPlaca(jtfPlaca.getText());
+            c.setMarca((String) jcMarca.getSelectedItem());
+            c.setAnoFabricacao(Integer.parseInt(jtfAnoFabricacao.getText()));
+            c.setCor(jtfCor.getText());
+            c.setModelo(jtfModelo.getText());
+            c.setAnoModelo(Integer.parseInt(jtfAnoM.getText()));
+            c.setnPortas(Integer.parseInt(jtfPortas.getText()));
+
+            addRowToTable();
+
+            jbConfirmar.setEnabled(false);
+            jbSalvar.setEnabled(true);
+            jbLimpar.setEnabled(true);
+
+            jbLimpar.doClick();
+            jbLimpar.setText("Limpar");
+
+            String msg = "Dados atualizado com sucesso!";
+            JOptionPane.showMessageDialog(this, msg, ".: Atualizar :.", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            jbLimpar.doClick();
+            jtfPlaca.setEnabled(true);
+        }
+        jtfPlaca.setEnabled(true);
+    }//GEN-LAST:event_jbConfirmarActionPerformed
+
+    // JButton "Deletar"
+    private void jbDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarActionPerformed
+        jbEditar.setEnabled(false);
+        int linha_da_tabela;
+        String placa;
+        linha_da_tabela = jtCarros.getSelectedRow();
+        placa = (String) jtCarros.getValueAt(linha_da_tabela, 0);
+
+        Carro c = cadCarros.getByDoc(placa);
+
+        Object[] resp = {"Sim", "Não"};
+        int resposta = JOptionPane.showOptionDialog(this,
+                "Deseja realmente deletar " + "?", ".: Deletar :.", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.WARNING_MESSAGE, null, resp, resp[0]);
+        if (resposta == 0) {
+            cadCarros.deletar(c);
+            addRowToTable();
+            JOptionPane.showMessageDialog(this, "Carro deletado com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Entendemos sua decisão!",
+                    ".: Deletar :.", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jbDeletarActionPerformed
+    
+    // JButton "Sair"
+    private void jbSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSairActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbSairActionPerformed
+    
+    /**
+     * Algumas validações e métodos
+     *
+     */
     
     private Boolean validaInputs() {
-        Boolean verPlaca;
-        String placa = jtfPlaca.getText().toUpperCase();
-        verPlaca = (placa.length() == 7 && !cadCarros.verPlaca(placa));
-        if (!verPlaca) {
-            String msg = "Placa já cadastrada ou incorreta!";
-            JOptionPane.showMessageDialog(this, msg, ".: Erro :.",
-                    JOptionPane.ERROR_MESSAGE);
-            jtfPlaca.requestFocus();
-            return false;
+        if (btnClick.getText() == "Salvar") {
+            Boolean verPlaca;
+            String placa = jtfPlaca.getText().toUpperCase();
+            verPlaca = (placa.length() == 7 && !cadCarros.verPlaca(placa));
+            if (!verPlaca) {
+                String msg = "Placa já cadastrada ou incorreta!";
+                JOptionPane.showMessageDialog(this, msg, ".: Erro :.",
+                        JOptionPane.ERROR_MESSAGE);
+                jtfPlaca.requestFocus();
+                return false;
+            }
+            if (!cadPessoas.verCPF(jtfCPFProp.getText())) {
+                jlProprietario.setText("Proprietário inexistente!");
+                String msg = "Primeiro cadastre o portador deste CPF: " + ValidaCPF.imprimeCPF(jtfCPFProp.getText()) + ". Para assim cadastrar o veículo!";
+                JOptionPane.showMessageDialog(this, msg, ".: Erro :.",
+                        JOptionPane.ERROR_MESSAGE);
+                jtfCPFProp.requestFocus();                
+                return false;
+            }
+           
         }
         Calendar cal = GregorianCalendar.getInstance();
         int anoAtual = cal.get(Calendar.YEAR);
@@ -410,45 +701,32 @@ public class carroCadastro extends javax.swing.JFrame {
             jtfAnoM.requestFocus();
             return false;
         }
-        return true;
-    }
-
-    private void jbSalvarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarCarroActionPerformed
-        // TODO add your handling code here:
-        if (validaInputs()) {
-            int id = cadCarros.gerarId();
-            int idPessoa = cadPessoas.pesqIdPes(jtfCPFProp.getText());
-            String placa = jtfPlaca.getText();
-            String marca = jcMarca.getSelectedItem().toString();
-            String modelo = jtfModelo.getText();
-            int anoF = Integer.parseInt(jtfAnoFabricacao.getText());
-            int anoM = Integer.parseInt(jtfAnoM.getText());
-            String cor = jtfCor.getText();
-            int portas = Integer.parseInt(jtfPortas.getText());
-            
-            Carro c = new Carro(idPessoa, placa, marca, modelo, anoF, anoM, cor,
-                    portas, idPessoa);
-            cadCarros.add(c);
-            
-            JOptionPane.showMessageDialog(this, "Carro foi salvo com sucesso!");
-            System.out.println(cadCarros.getAll());
-            
+        if (jcMarca.getSelectedItem().equals("Selecione...")) {
+            String msg = "Selecione uma marca!";
+            JOptionPane.showMessageDialog(this, msg, ".: Erro :.",
+                    JOptionPane.ERROR_MESSAGE);
+            jcMarca.requestFocus();
+            return false;
         }
 
-    }//GEN-LAST:event_jbSalvarCarroActionPerformed
+        return true;
 
-    private void jbLimparCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimparCarroActionPerformed
-        // TODO add your handling code here:
-        jtfPlaca.setText("");
-        jcMarca.setSelectedIndex(0);
-        jtfCor.setText("");
-        jtfCPF.setText("");
-        jtfModelo.setText("");
-        jtfAnoM.setText("");
-        jtfPortas.setText("");
-        jlProprietario.setText("Proprietário...");
-        
-    }//GEN-LAST:event_jbLimparCarroActionPerformed
+    }
+
+    private void addRowToTable() {
+        DefaultTableModel model = (DefaultTableModel) jtCarros.getModel();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        Object rowData[] = new Object[4]; //cria vetor para as colunas da tabela
+        for (Carro c : cadCarros.getAll()) {
+            rowData[0] = c.getPlaca();
+            rowData[1] = c.getMarca();
+            rowData[2] = c.getModelo();
+            rowData[3] = cadPessoas.getNomePes(c.getIdPessoa());
+
+            model.addRow(rowData);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -487,51 +765,33 @@ public class carroCadastro extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton jbConfirmar;
     private javax.swing.JButton jbDeletar;
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbLimpar;
-    private javax.swing.JButton jbLimparCarro;
-    private javax.swing.JButton jbPesqCPF;
     private javax.swing.JButton jbPesquisaPlaca;
     private javax.swing.JButton jbSair;
     private javax.swing.JButton jbSalvar;
-    private javax.swing.JButton jbSalvarCarro;
     private javax.swing.JComboBox<String> jcMarca;
     private javax.swing.JLabel jlAnoF;
     private javax.swing.JLabel jlAnoM;
     private javax.swing.JLabel jlCPF;
     private javax.swing.JLabel jlCor;
-    private javax.swing.JLabel jlEndereco;
-    private javax.swing.JLabel jlIdade;
     private javax.swing.JLabel jlMarca;
     private javax.swing.JLabel jlModelo;
-    private javax.swing.JLabel jlNome;
     private javax.swing.JLabel jlPlaca;
     private javax.swing.JLabel jlPortas;
     private javax.swing.JLabel jlProprietario;
-    private javax.swing.JLabel jlStatus;
-    private javax.swing.JLabel jlTelefone;
-    private javax.swing.JRadioButton jrbAtivo;
-    private javax.swing.JRadioButton jrbInativo;
-    private javax.swing.JTable jtPessoa;
+    private javax.swing.JTable jtCarros;
     private javax.swing.JTextField jtfAnoFabricacao;
     private javax.swing.JTextField jtfAnoM;
-    private javax.swing.JTextField jtfCPF;
     private javax.swing.JTextField jtfCPFProp;
     private javax.swing.JTextField jtfCor;
-    private javax.swing.JTextField jtfEndereco;
-    private javax.swing.JTextField jtfIdade;
     private javax.swing.JTextField jtfModelo;
     private javax.swing.JTextField jtfPlaca;
     private javax.swing.JTextField jtfPortas;
-    private javax.swing.JTextField jtfTelefone;
-    private javax.swing.JTextField jtfsNome;
     // End of variables declaration//GEN-END:variables
 }
